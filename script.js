@@ -189,3 +189,6 @@ function closeDirections() {
     document.getElementById("route-info").textContent = "";
     document.getElementById("close-directions").style.display = "none"; // Hide close button
 }
+
+
+
