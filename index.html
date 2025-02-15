@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nearby ATM Locator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Nearby ATM Locator</h1>
+        <input type="text" id="search" placeholder="Enter location (e.g. Marikina)">
+        <button onclick="searchLocation()">Search</button>
+        <button onclick="findNearbyATMs()">Find ATMs Near Me</button>
+        <select id="bankFilter">
+            <option value="">All Banks</option>
+            <option value="bdo">BDO</option>
+            <option value="bpi">BPI</option>
+            <option value="metrobank">Metrobank</option>
+            <option value="landbank">Landbank</option>
+        </select>
+        <p id="message"></p>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
