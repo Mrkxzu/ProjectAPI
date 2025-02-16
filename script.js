@@ -1,10 +1,10 @@
-// Map Initialization
+/* Map Initialization */
 let map;
 let userLocation;
 let routeLayer;
 let directionMarker;
 
-// Initializing the Map
+/* Initializing the Map */
 function initMap(lat, lng) {
     if (!map) {
         map = L.map('map').setView([lat, lng], 15);
@@ -23,7 +23,7 @@ function initMap(lat, lng) {
     findATMs(lat, lng);
 }
 
-// Find Nearby ATMs Based on User Location
+/* Find Nearby ATMs Based on User Location */
 function findNearbyATMs() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -42,7 +42,7 @@ function findNearbyATMs() {
     }
 }
 
-// Search by Location or Landmark
+/* Search by Location or Landmark */
 function searchLocation() {
     const query = document.getElementById("search").value;
     if (!query) return;
@@ -58,16 +58,16 @@ function searchLocation() {
             const place = data[0];
             document.getElementById("message").textContent = "";
             initMap(place.lat, place.lon);
-            findATMs(place.lat, place.lon); // Find ATMs near the landmark
+            findATMs(place.lat, place.lon); /* Find ATMs near the landmark */
         })
         .catch(() => {
             document.getElementById("message").textContent = "Error finding location.";
         });
 }
 
-// Find ATMs (Includes Bank Name)
+/* Find ATMs (Includes Bank Name) */
 function findATMs(lat, lng) {
-    const radius = 1000; // 1km radius
+    const radius = 1000; /* 1km radius */
     const selectedBank = document.getElementById("bankFilter").value.toLowerCase();
 
     const overpassQuery = `
@@ -86,7 +86,7 @@ function findATMs(lat, lng) {
                 return;
             }
 
-            // Remove previous ATM markers
+            /* Remove previous ATM markers */
             map.eachLayer(layer => {
                 if (layer instanceof L.Marker && layer.options.title !== "Selected Location") {
                     map.removeLayer(layer);
@@ -99,7 +99,7 @@ function findATMs(lat, lng) {
                 const name = tags.name || "ATM";
                 const operator = tags.operator || "Unknown Bank"; // Bank name
 
-                // Apply bank filter
+                /* Apply bank filter */
                 if (selectedBank && !operator.toLowerCase().includes(selectedBank)) return;
 
                 foundATM = true;
@@ -123,7 +123,7 @@ function findATMs(lat, lng) {
         });
 }
 
-// Get Directions to ATM 
+/* Get Directions to ATM */ 
 function getDirections(atmLat, atmLon, bankName) {
     if (!userLocation) {
         document.getElementById("message").textContent = "Enable location to get directions.";
@@ -132,7 +132,7 @@ function getDirections(atmLat, atmLon, bankName) {
 
     const { lat, lng } = userLocation;
 
-    // Remove previous route & marker
+    /* Remove previous route & marker */
     if (routeLayer) {
         map.removeLayer(routeLayer);
     }
@@ -140,7 +140,7 @@ function getDirections(atmLat, atmLon, bankName) {
         map.removeLayer(directionMarker);
     }
 
-    // Add ATM marker only when getting directions
+    /* Add ATM marker only when getting directions */
     directionMarker = L.marker([atmLat, atmLon], { title: "Destination" })
         .addTo(map)
         .bindPopup(`<strong>${bankName} ATM</strong><br>🚶 Directions Active`);
@@ -153,15 +153,15 @@ function getDirections(atmLat, atmLon, bankName) {
             if (data.routes.length > 0) {
                 const route = data.routes[0];
                 const routeCoords = route.geometry.coordinates.map(coord => [coord[1], coord[0]]);
-                const distance = (route.distance / 1000).toFixed(2); // Convert meters to km
-                const time = Math.round(route.duration / 60); // Convert seconds to minutes
+                const distance = (route.distance / 1000).toFixed(2); /* Convert meters to km */
+                const time = Math.round(route.duration / 60); /* Convert seconds to minutes */
 
                 routeLayer = L.polyline(routeCoords, { color: "blue", weight: 5 }).addTo(map);
                 map.fitBounds(routeLayer.getBounds());
 
                 document.getElementById("route-info").textContent = `🚶 ${distance} km | ⏳ ${time} mins`;
 
-                // Show the close button when directions are shown
+                /* Show the close button when directions are shown */
                 const closeBtn = document.getElementById("close-directions");
                 if (closeBtn) {
                     closeBtn.style.display = "inline-block";
@@ -175,7 +175,7 @@ function getDirections(atmLat, atmLon, bankName) {
         });
 }
 
-// Close Directions 
+/* Close Directions */
 function closeDirections() {
     if (routeLayer) {
         map.removeLayer(routeLayer);
@@ -187,7 +187,7 @@ function closeDirections() {
     }
 
     document.getElementById("route-info").textContent = "";
-    document.getElementById("close-directions").style.display = "none"; // Hide close button
+    document.getElementById("close-directions").style.display = "none"; /* Hide close button */
 }
 
 

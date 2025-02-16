@@ -1,4 +1,4 @@
-/* 🌍 Global Styles */
+/* Global Styles */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
@@ -6,21 +6,23 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background: linear-gradient(to bottom, #007bff, #4a90e2); /* Gradient background */
     color: #333;
+    background: url('noe-fornells-EE2vI9NQysU-unsplash.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-/* 📌 Centered Content Container */
+/* Centered Content Container */
 .container {
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9); /* Slight transparency */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.863); /* Slight transparency */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     max-width: 600px;
     margin: 30px auto;
 }
 
-/* 🏷️ Header Styling */
+/* Header Styling */
 h1 {
     margin: 10px 0;
     font-size: 24px;
@@ -28,7 +30,7 @@ h1 {
     color: #222;
 }
 
-/* 🔍 Input, Button, and Dropdown Styling */
+/* Input, Button, and Dropdown Styling */
 input, button, select {
     margin: 8px;
     padding: 12px;
@@ -39,7 +41,7 @@ input, button, select {
     transition: 0.3s ease-in-out;
 }
 
-/* 🔎 Search Input */
+/* Search Input */
 input {
     width: 60%;
 }
@@ -48,7 +50,7 @@ input:focus {
     border-color: #007bff;
 }
 
-/* 🔘 Button Styling */
+/* Button Styling */
 button {
     background: linear-gradient(to right, #007bff, #0056b3);
     color: white;
@@ -62,7 +64,7 @@ button {
     transition: transform 0.2s ease-in-out;
 }
 
-/* 🚀 Left-to-Right Hover Animation */
+/* Left-to-Right Hover Animation */
 button::before {
     content: "";
     position: absolute;
@@ -82,7 +84,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* 📍 Dropdown Menu */
+/* Dropdown Menu */
 select {
     width: 250px;
     background: white;
@@ -93,7 +95,7 @@ select:hover, select:focus {
     border-color: #007bff;
 }
 
-/* 🗺️ Map Container */
+/* Map Container */
 #map {
     width: 70%;
     height: 500px;
@@ -102,10 +104,10 @@ select:hover, select:focus {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     overflow: hidden;
     position: relative; /* Needed for absolute positioning */
-    background: #f0f0f0; /* Light gray background before the map loads */
+    background: #f0f0f0e3; /* Light gray background before the map loads */
 }
 
-/* 📍 Map Placeholder */
+/* Map Placeholder */
 .map-placeholder {
     position: absolute;
     top: 50%;
@@ -121,7 +123,7 @@ select:hover, select:focus {
     pointer-events: none; /* Ensures map remains clickable */
 }
 
-/* 🎯 Hide Placeholder When Map is Active */
+/* Hide Placeholder When Map is Active */
 .map-active .map-placeholder {
     display: none;
 }
