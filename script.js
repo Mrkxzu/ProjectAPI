@@ -11,6 +11,8 @@ function initMap(lat, lng) {
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
+
+        document.getElementById('map').classList.add('map-active');
     } else {
         map.setView([lat, lng], 15);
     }
@@ -189,6 +191,5 @@ function closeDirections() {
     document.getElementById("route-info").textContent = "";
     document.getElementById("close-directions").style.display = "none"; /* Hide close button */
 }
-
 
 
